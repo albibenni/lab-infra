@@ -20,3 +20,10 @@ spec:
           name: mealie-recipes
           ports:
             - containerPort: 9000 # from docs - https://mealie.io/docs/installation/docker - port for the pod connection
+          volumeMounts:
+            - mountPath: /app/data # mount path for mealie data
+              name: mealie-data
+      volumes:
+        - name: mealie-data
+          persistentVolumeClaim:
+            claimName: mealie-data
